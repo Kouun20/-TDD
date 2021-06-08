@@ -50,14 +50,10 @@ class NewVisitorTest(LiveServerTestCase):
 		# (Edith's hobby is tying fly fishing lures)
 		inputbox.send_keys('Buy peacock feathers')
 		
-		# When she hits enter, the page updates, and noew the page lists
+		# When she hits enter, the page updates, and new the page lists
 		# "1: But peacock feathers" as an item in a to-do list
 		inputbox.send_keys(Keys.ENTER)
 		self.wait_for_row_in_list_table('1: Buy peacock feathers')
-		
-		table = self.browser.find_element_by_id('id_list_table')
-		rows = table.find_elements_by_tag_name('tr')
-		self.assertIn('1: Buy peacock feathers', [row.text for row in rows])
 		
 		# There is still a text box inviting her to add another item
 		# She enters "Use peacock feathers to make a fly" (Edith is very methodical)
